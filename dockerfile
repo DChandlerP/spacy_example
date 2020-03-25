@@ -1,7 +1,7 @@
 # Python has an official image. Alpine and slim are the small versions
-FROM python:3.7.7-slim-stretch
+FROM conda/miniconda3
 #https://spacy.io/usage
-RUN pip install -U spacy
+RUN conda install -c conda-forge spacy
 
 # checks if all installed models are compatible with your spaCy version
 RUN python -m spacy validate
