@@ -1,12 +1,12 @@
-# Import the English language class
-from spacy.lang.en import English
+import spacy
 
-# Create the nlp object
-nlp = English()
+# Load the small English model
+nlp = spacy.load('en_core_web_sm')
 
-# Created by processing a string of text with the nlp object
-doc = nlp("Hello world!")
+# Process a text
+doc = nlp("A small step for a man , one giant leap for mankind.")
 
-# Iterate over tokens in a Doc
+# Iterate over the tokens
 for token in doc:
-    print(token.text)
+    # Print the text and the predicted part-of-speech tag
+    print(token.text, token.pos_,  token.dep_, token.head.text)
