@@ -3,10 +3,21 @@ import spacy
 # Load the small English model
 nlp = spacy.load('en_core_web_sm')
 
-# Process a text
-doc = nlp("A small step for a man , one giant leap for mankind.")
+text = "It’s official: Apple is the first U.S. public company to reach a $1 trillion market value"
 
-# Iterate over the tokens
+# Process the text
+doc = nlp(text)
+
 for token in doc:
-    # Print the text and the predicted part-of-speech tag
-    print(token.text, token.pos_,  token.dep_, token.head.text)
+    # Get the token text, part-of-speech tag and dependency label
+    token_text = token.text
+    token_pos = token.pos_
+    token_dep = token.dep_
+    # This is for formatting only
+    print("{:<12}{:<10}{:<10}".format(token_text, token_pos, token_dep))
+
+print("\n")
+# Iterate over the predicted entities
+for ent in doc.ents:
+    # Print the entity text and its label
+    print(ent.text, ent.label_)
