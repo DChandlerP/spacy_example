@@ -1,23 +1,15 @@
 import spacy
 
 # Load the small English model
-nlp = spacy.load('en_core_web_sm')
+nlp = spacy.load('en_core_web_md')
 
-text = "It’s official: Apple is the first U.S. public company to reach a $1 trillion market value"
+# Compare two documents
+doc1 = nlp("I like fast food")
+doc2 = nlp("I like pizza")
+print(doc1.similarity(doc2))
 
-# Process the text
-doc = nlp(text)
-
-for token in doc:
-    # Get the token text, part-of-speech tag and dependency label
-    token_text = token.text
-    token_pos = token.pos_
-    token_dep = token.dep_
-    # This is for formatting only
-    print("{:<12}{:<10}{:<10}".format(token_text, token_pos, token_dep))
-
-print("\n")
-# Iterate over the predicted entities
-for ent in doc.ents:
-    # Print the entity text and its label
-    print(ent.text, ent.label_)
+# Compare two tokens
+doc = nlp("I like pizza and pasta")
+token1 = doc[2]
+token2 = doc[4]
+print(token1.similarity(token2))
